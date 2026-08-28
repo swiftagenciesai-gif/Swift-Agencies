@@ -1,6 +1,7 @@
 import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
+import { BotpressWidget } from "@/components/botpress-widget"
 import "./globals.css"
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" })
@@ -45,6 +46,10 @@ export default function RootLayout({
     <html lang="en" className={`dark bg-background ${geistSans.variable} ${geistMono.variable}`}>
       <body className="font-sans antialiased">
         {children}
+        <BotpressWidget
+          injectUrl="https://cdn.botpress.cloud/webchat/v5.0/inject.js"
+          configUrl="https://files.bpcontent.cloud/2026/08/14/00/20260814001647-NYKRVX7V.js"
+        />
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>

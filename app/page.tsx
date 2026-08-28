@@ -13,7 +13,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { PLANS } from "@/lib/pricing"
 import {
   ArrowRight,
   MessageSquare,
@@ -24,7 +23,6 @@ import {
   ShieldCheck,
   Wand2,
   Rocket,
-  Check,
 } from "lucide-react"
 
 const STEPS = [
@@ -66,7 +64,7 @@ const FAQS = [
 const BOT_OPTIONS = {
   objective: ["Lead Generation", "Customer Support", "Appointment Booking"],
   tone: ["Professional", "Casual", "Playful"],
-  platform: ["Website Pop-up", "WhatsApp", "SMS"],
+  intelligence: ["Sophisticated AI", "AI-to-AI workflows", "Managed knowledge base"],
 } as const
 
 const ADD_ONS = [
@@ -81,7 +79,7 @@ export default function HomePage() {
   const [botPreferences, setBotPreferences] = useState({
     objective: "Lead Generation",
     tone: "Professional",
-    platform: "Website Pop-up",
+    intelligence: "Sophisticated AI",
   })
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([])
   const setupTotal = 1500 + selectedAddOns.reduce((total, id) => total + (ADD_ONS.find((addon) => addon.id === id)?.setup ?? 0), 0)
@@ -122,16 +120,16 @@ export default function HomePage() {
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" className="gap-2">
-                  <Link href="#builder">
+                  <Link href="/configure">
                     Build your chatbot <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
-                  <Link href="#pricing">See pricing</Link>
+                  <Link href="/pricing">See pricing</Link>
                 </Button>
               </div>
               <p className="mt-4 text-sm text-muted-foreground">
-                One-time build from $499 · Live in days · No code required
+                From $1,500 setup + $350/month · Website chatbot · Managed for you
               </p>
             </div>
 
@@ -147,7 +145,7 @@ export default function HomePage() {
             <div className="max-w-2xl">
               <Badge variant="outline" className="mb-4">01 / Configure</Badge>
               <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">Build a bot with a point of view.</h2>
-              <p className="mt-3 text-muted-foreground">Choose the job, voice, and home for your assistant. Your selections stay local to this page.</p>
+              <p className="mt-3 text-muted-foreground">Choose the job, voice, and intelligence level for your website chatbot. Your selections stay local to this page.</p>
             </div>
             <div className="mt-10 grid gap-5 lg:grid-cols-[1.1fr_.9fr]">
               <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
@@ -161,7 +159,7 @@ export default function HomePage() {
                 ))}
               </div>
               <div className="flex min-h-[280px] flex-col justify-between rounded-2xl border border-primary/50 bg-gradient-to-br from-primary/15 via-card to-card p-6 sm:p-8">
-                <div><div className="mb-8 flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground"><Sparkles className="h-5 w-5" /></div><h3 className="max-w-sm text-2xl font-semibold tracking-tight">Your {botPreferences.tone.toLowerCase()} {botPreferences.objective.toLowerCase()} agent.</h3><p className="mt-3 max-w-sm text-sm leading-6 text-muted-foreground">Deployed as a {botPreferences.platform.toLowerCase()}, ready to make a thoughtful first impression.</p></div>
+                <div><div className="mb-8 flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground"><Sparkles className="h-5 w-5" /></div><h3 className="max-w-sm text-2xl font-semibold tracking-tight">Your {botPreferences.tone.toLowerCase()} {botPreferences.objective.toLowerCase()} agent.</h3><p className="mt-3 max-w-sm text-sm leading-6 text-muted-foreground">A {botPreferences.intelligence.toLowerCase()} website chatbot, ready to make a thoughtful first impression.</p></div>
                 <p className="mt-8 flex items-center gap-2 text-xs text-muted-foreground"><span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_theme(colors.emerald.400)]" /> Configuration saved locally</p>
               </div>
             </div>

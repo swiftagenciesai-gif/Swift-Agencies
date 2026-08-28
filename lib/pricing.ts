@@ -5,6 +5,8 @@ export type Plan = {
   id: string
   name: string
   price: number // one-time setup price in USD, 0 = custom
+  monthlyPrice: number // recurring maintenance price in USD, 0 = custom
+  botCount: string
   tagline: string
   popular?: boolean
   custom?: boolean
@@ -15,8 +17,10 @@ export const PLANS: Plan[] = [
   {
     id: "starter",
     name: "Starter",
-    price: 499,
-    tagline: "Everything you need to launch a smart AI chatbot.",
+    price: 1500,
+    monthlyPrice: 350,
+    botCount: "1 website chatbot",
+    tagline: "A focused website chatbot with the essentials handled for you.",
     features: [
       "Custom AI chatbot",
       "Website widget",
@@ -24,54 +28,64 @@ export const PLANS: Plan[] = [
       "Basic knowledge base",
       "Lead capture",
       "Custom personality",
-      "Basic customization",
-      "Mobile support",
-      "Installation assistance",
+      "Website widget installation",
+      "Basic chatbot management",
+      "Monthly support and tuning",
     ],
   },
   {
     id: "growth",
     name: "Growth",
-    price: 999,
+    price: 3000,
+    monthlyPrice: 750,
+    botCount: "Up to 2 website chatbots",
     popular: true,
-    tagline: "Advanced AI behavior and automation for growing teams.",
+    tagline: "Smarter AI behavior, better management, and workflows for growing teams.",
     features: [
       "Everything in Starter",
       "Advanced AI behavior",
       "Advanced knowledge base",
+      "Sophisticated AI behavior",
       "Lead qualification",
       "Appointment booking",
       "Human escalation",
-      "Analytics",
+      "Bot management dashboard",
+      "Analytics and conversation review",
       "Custom workflows",
       "Integrations",
-      "Priority support",
+      "Priority support and optimization",
     ],
   },
   {
     id: "pro",
     name: "Pro",
-    price: 1999,
-    tagline: "Deep integrations and custom development for scale.",
+    price: 6000,
+    monthlyPrice: 1500,
+    botCount: "Up to 5 website chatbots",
+    tagline: "Advanced AI systems, multiple bots, and hands-on management at scale.",
     features: [
       "Everything in Growth",
+      "Up to 5 coordinated chatbots",
       "Multiple workflows",
       "Advanced integrations",
       "CRM integration",
       "Custom API integrations",
+      "Advanced AI chatbot management",
       "Advanced analytics",
       "Multiple knowledge sources",
       "Advanced automation",
       "Custom development",
-      "Priority implementation",
+      "Dedicated support and optimization",
     ],
   },
   {
     id: "enterprise",
     name: "Enterprise",
     price: 0,
+    monthlyPrice: 0,
+    botCount: "Multiple website chatbots",
     custom: true,
-    tagline: "Custom AI systems for multiple chatbots and websites.",
+    tagline: "Custom multi-bot AI systems, strategy, and dedicated ongoing support.",
     features: [
       "Multiple chatbots",
       "Multiple websites",

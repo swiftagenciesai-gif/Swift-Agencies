@@ -29,10 +29,30 @@ export function BotpressWidget({ injectUrl, configUrl }: Props) {
     config.src = configUrl
     config.async = true
 
+    const captureMessage = (event: MessageEvent) => {
+      if (event.origin && !event.origin.endsWith("botpress.cloud") && event.origin !== window.location.origin) return
+      const data = event.data
+      const message = data?.message?.text ?? data?.message
+      if (typeof message !== "string" || !message.trim()) return
+      void fetch("/api/chatbot/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message,
+          direction: data?.direction === "outbound" ? "outbound" : "inbound",
+          botId: data?.botId,
+          conversationId: data?.conversationId,
+          metadata: { source: "botpress", eventType: data?.type ?? "message" },
+        }),
+      }).catch(() => undefined)
+    }
+
     inject.onload = () => document.body.appendChild(config)
+    window.addEventListener("message", captureMessage)
     document.body.appendChild(inject)
 
     return () => {
+      window.removeEventListener("message", captureMessage)
       inject.remove()
       config.remove()
     }

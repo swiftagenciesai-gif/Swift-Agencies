@@ -92,6 +92,7 @@ export const orders = pgTable("orders", {
   userId: text("userId"),
   plan: text("plan").notNull(),
   basePrice: integer("basePrice").notNull().default(0),
+  monthlyPrice: integer("monthlyPrice").notNull().default(0),
   addOnPrice: integer("addOnPrice").notNull().default(0),
   totalPrice: integer("totalPrice").notNull().default(0),
   paymentStatus: text("paymentStatus").notNull().default("unpaid"),
@@ -145,6 +146,17 @@ export const leads = pgTable("leads", {
   qualification: text("qualification"),
   createdAt: timestamp("createdAt").notNull().defaultNow(),
   updatedAt: timestamp("updatedAt").notNull().defaultNow(),
+})
+
+export const chatbotMessages = pgTable("chatbot_messages", {
+  id: text("id").primaryKey(),
+  companyId: text("companyId"),
+  botId: text("botId"),
+  conversationId: text("conversationId"),
+  direction: text("direction").notNull().default("inbound"),
+  message: text("message").notNull(),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
 })
 
 export const activityLog = pgTable("activity_log", {
