@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link"
+import { useState } from "react"
 import { SiteHeader } from "@/components/marketing/site-header"
 import { SiteFooter } from "@/components/marketing/site-footer"
 import { ChatMockup } from "@/components/marketing/chat-mockup"
@@ -60,7 +63,34 @@ const FAQS = [
   { q: "What if I need something custom?", a: "That's what we do. Choose the Pro or Enterprise plan (or add-ons) and we'll build custom workflows, integrations, and multi-bot systems." },
 ]
 
+const BOT_OPTIONS = {
+  objective: ["Lead Generation", "Customer Support", "Appointment Booking"],
+  tone: ["Professional", "Casual", "Playful"],
+  platform: ["Website Pop-up", "WhatsApp", "SMS"],
+} as const
+
+const ADD_ONS = [
+  { id: "voice", name: "Voice Calling Integration", setup: 500, monthly: 50 },
+  { id: "language", name: "Multi-Language Support", setup: 300, monthly: 20 },
+  { id: "crm", name: "Advanced CRM Sync", setup: 400, monthly: 30 },
+]
+
+const TALLY_URL = "https://tally.so"
+
 export default function HomePage() {
+  const [botPreferences, setBotPreferences] = useState({
+    objective: "Lead Generation",
+    tone: "Professional",
+    platform: "Website Pop-up",
+  })
+  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([])
+  const setupTotal = 1500 + selectedAddOns.reduce((total, id) => total + (ADD_ONS.find((addon) => addon.id === id)?.setup ?? 0), 0)
+  const monthlyTotal = 350 + selectedAddOns.reduce((total, id) => total + (ADD_ONS.find((addon) => addon.id === id)?.monthly ?? 0), 0)
+
+  const toggleAddOn = (id: string) => {
+    setSelectedAddOns((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id])
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
@@ -92,12 +122,12 @@ export default function HomePage() {
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" className="gap-2">
-                  <Link href="/configure">
+                  <Link href="#builder">
                     Build your chatbot <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
-                  <Link href="/pricing">See pricing</Link>
+                  <Link href="#pricing">See pricing</Link>
                 </Button>
               </div>
               <p className="mt-4 text-sm text-muted-foreground">
@@ -107,6 +137,33 @@ export default function HomePage() {
 
             <div className="flex justify-center lg:justify-end">
               <ChatMockup />
+            </div>
+          </div>
+        </section>
+
+        {/* AI preferences creator */}
+        <section id="builder" className="border-t border-border/60 bg-card/30">
+          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
+            <div className="max-w-2xl">
+              <Badge variant="outline" className="mb-4">01 / Configure</Badge>
+              <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">Build a bot with a point of view.</h2>
+              <p className="mt-3 text-muted-foreground">Choose the job, voice, and home for your assistant. Your selections stay local to this page.</p>
+            </div>
+            <div className="mt-10 grid gap-5 lg:grid-cols-[1.1fr_.9fr]">
+              <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+                {(Object.entries(BOT_OPTIONS) as [keyof typeof BOT_OPTIONS, readonly string[]][]).map(([category, options]) => (
+                  <div key={category} className="not-first:mt-8">
+                    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">{category}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {options.map((option) => <button key={option} type="button" onClick={() => setBotPreferences((current) => ({ ...current, [category]: option }))} className={`rounded-lg border px-3 py-2 text-sm transition-all hover:-translate-y-0.5 ${botPreferences[category] === option ? "border-primary bg-primary/15 text-foreground shadow-sm shadow-primary/10" : "border-border text-muted-foreground hover:border-primary/60 hover:text-foreground"}`}>{option}</button>)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="flex min-h-[280px] flex-col justify-between rounded-2xl border border-primary/50 bg-gradient-to-br from-primary/15 via-card to-card p-6 sm:p-8">
+                <div><div className="mb-8 flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground"><Sparkles className="h-5 w-5" /></div><h3 className="max-w-sm text-2xl font-semibold tracking-tight">Your {botPreferences.tone.toLowerCase()} {botPreferences.objective.toLowerCase()} agent.</h3><p className="mt-3 max-w-sm text-sm leading-6 text-muted-foreground">Deployed as a {botPreferences.platform.toLowerCase()}, ready to make a thoughtful first impression.</p></div>
+                <p className="mt-8 flex items-center gap-2 text-xs text-muted-foreground"><span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_theme(colors.emerald.400)]" /> Configuration saved locally</p>
+              </div>
             </div>
           </div>
         </section>
@@ -161,49 +218,19 @@ export default function HomePage() {
         </section>
 
         {/* Pricing preview */}
-        <section className="border-t border-border/60 bg-card/30">
+        <section id="pricing" className="border-t border-border/60 bg-card/30">
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
             <div className="max-w-2xl">
               <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                Simple one-time pricing
+                A system that earns its keep
               </h2>
               <p className="mt-3 text-muted-foreground">
-                Pick a plan that fits, add exactly what you need. No surprise monthly fees.
+                Start with the flagship package, then add exactly what your operation needs.
               </p>
             </div>
-            <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {PLANS.map((plan) => (
-                <div
-                  key={plan.id}
-                  className={`relative flex flex-col rounded-2xl border bg-card p-6 ${
-                    plan.popular ? "border-primary shadow-lg shadow-primary/10" : "border-border"
-                  }`}
-                >
-                  {plan.popular && <Badge className="absolute -top-2.5 left-6">Most popular</Badge>}
-                  <h3 className="font-medium">{plan.name}</h3>
-                  <p className="mt-2 text-3xl font-semibold tracking-tight">
-                    {plan.custom ? "Custom" : `$${plan.price}`}
-                  </p>
-                  <p className="mt-2 text-sm text-muted-foreground text-pretty">{plan.tagline}</p>
-                  <ul className="mt-5 flex-1 space-y-2">
-                    {plan.features.slice(0, 5).map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-sm">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                        <span className="text-muted-foreground">{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    asChild
-                    variant={plan.popular ? "default" : "outline"}
-                    className="mt-6 w-full"
-                  >
-                    <Link href={plan.custom ? "/contact" : `/configure?plan=${plan.id}`}>
-                      {plan.custom ? "Contact us" : "Get started"}
-                    </Link>
-                  </Button>
-                </div>
-              ))}
+            <div id="calculator" className="mt-12 grid gap-6 lg:grid-cols-[.85fr_1.15fr]">
+              <div className="rounded-2xl border border-border bg-card p-6 sm:p-8"><h3 className="text-xl font-semibold">Add-on features</h3><p className="mt-2 text-sm text-muted-foreground">Tailor your setup without paying for what you do not need.</p><div className="mt-6">{ADD_ONS.map((addon) => <label key={addon.id} className="flex cursor-pointer items-start gap-3 border-t border-border py-4"><input type="checkbox" checked={selectedAddOns.includes(addon.id)} onChange={() => toggleAddOn(addon.id)} className="mt-1 h-4 w-4 accent-primary" /><span className="flex flex-1 justify-between gap-3 text-sm"><span>{addon.name}</span><span className="whitespace-nowrap text-xs text-primary">+${addon.setup} / +${addon.monthly}mo</span></span></label>)}</div></div>
+              <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-primary/60 bg-card p-6 shadow-lg shadow-primary/10 sm:p-8"><div><Badge className="mb-5">Flagship package</Badge><h3 className="text-2xl font-semibold tracking-tight">The Swift Partnership</h3><p className="mt-2 max-w-lg text-sm text-muted-foreground">A high-touch AI growth system built around your goals, your voice, and your opportunities.</p></div><div className="my-10 grid grid-cols-2 gap-4"><div className="border-t border-border pt-4"><p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Setup fee</p><p className="mt-2 text-4xl font-semibold tracking-tight">${setupTotal.toLocaleString()}</p></div><div className="border-t border-border pt-4"><p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Monthly retainer</p><p className="mt-2 text-4xl font-semibold tracking-tight">${monthlyTotal.toLocaleString()}<span className="text-base font-normal text-primary">/mo</span></p></div></div><Button asChild size="lg" className="w-full gap-2 sm:w-fit"><a href={TALLY_URL} target="_blank" rel="noreferrer">Start your onboarding <ArrowRight className="h-4 w-4" /></a></Button></div>
             </div>
           </div>
         </section>
