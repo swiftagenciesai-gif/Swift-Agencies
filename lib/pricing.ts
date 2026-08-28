@@ -60,7 +60,7 @@ export const PLANS: Plan[] = [
     id: "pro",
     name: "Pro",
     price: 6000,
-    monthlyPrice: 1500,
+    monthlyPrice: 1150,
     botCount: "Up to 5 website chatbots",
     tagline: "Advanced AI systems, multiple bots, and hands-on management at scale.",
     features: [
