@@ -68,9 +68,9 @@ const BOT_OPTIONS = {
 } as const
 
 const ADD_ONS = [
-  { id: "voice", name: "Voice Calling Integration", setup: 500, monthly: 50 },
-  { id: "language", name: "Multi-Language Support", setup: 300, monthly: 20 },
-  { id: "crm", name: "Advanced CRM Sync", setup: 400, monthly: 30 },
+  { id: "voice", name: "Voice Calling Integration", setup: 25, monthly: 10 },
+  { id: "language", name: "Multi-Language Support", setup: 25, monthly: 10 },
+  { id: "crm", name: "Advanced CRM Sync", setup: 25, monthly: 10 },
 ]
 
 const TALLY_URL = "https://tally.so"
