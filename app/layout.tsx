@@ -58,14 +58,10 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         {children}
-        <Script
-          src="https://vercel.app/widget.js"
-          strategy="afterInteractive"
-          data-bot-id="bot_bc5bhgbd"
-          data-company="Swift Agencies"
-          data-color="#ffb5af"
-          defer
-        />
+        <Script src="https://chat-bot-generator-rho.vercel.app/widget.js" strategy="afterInteractive" />
+        <Script id="botforge-mount" strategy="afterInteractive">
+          {`Botforge.mount({"botName":"Milo","business":"Swift Agencies","purpose":"Answer questions about our services, pricing, and booking availability. Be useful, concise, and friendly.","tone":"Warm and conversational","welcome":"Hey! What can I help you find?","color":"#ffb5af","position":"right","endpoint":"https://swift-delta-one.vercel.app"});`}
+        </Script>
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>
