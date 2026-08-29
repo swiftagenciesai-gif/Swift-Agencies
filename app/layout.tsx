@@ -59,11 +59,12 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         {children}
         <Script
-          src="https://huggingface.co/spaces/SwiftAgencies/Chatbot-Factory/resolve/main/widget.js"
+          src="https://vercel.app/widget.js"
           strategy="afterInteractive"
-          data-bot-id="bot_ff42gelt"
+          data-bot-id="bot_bc5bhgbd"
           data-company="Swift Agencies"
           data-color="#ffb5af"
+          defer
         />
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
