@@ -7,7 +7,7 @@ export default function SignInPage() {
     <main className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:py-20">
       <Link href="/" className="inline-flex items-center gap-2 text-sm text-[#5d4c42] transition-colors hover:text-[#1d1915]">
         <ArrowLeft className="h-4 w-4" />
-        Back to home
+        Back to main menu
       </Link>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">

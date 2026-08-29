@@ -15,7 +15,6 @@ const NEEDS = [
   "AI-to-AI workflows",
   "Advanced chatbot management",
   "Ongoing support and optimization",
-  "Multiple website chatbots",
 ]
 
 export default function ConfigurePage() {

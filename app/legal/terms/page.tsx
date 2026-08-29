@@ -6,7 +6,7 @@ export default function TermsPage() {
     <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:py-20">
       <Link href="/" className="inline-flex items-center gap-2 text-sm text-[#5d4c42] transition-colors hover:text-[#1d1915]">
         <ArrowLeft className="h-4 w-4" />
-        Back to home
+        Back to main menu
       </Link>
 
       <article className="mt-10 rounded-[2rem] border border-[#1d1915]/10 bg-[#fffdfb] p-6 shadow-[0_20px_60px_rgba(31,22,18,0.04)] sm:p-8">

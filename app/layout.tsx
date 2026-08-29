@@ -1,6 +1,7 @@
 import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
 import { Cormorant_Garamond, Manrope } from "next/font/google"
+import Script from "next/script"
 import "./globals.css"
 
 const displayFont = Cormorant_Garamond({
@@ -57,6 +58,13 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         {children}
+        <Script
+          src="https://16cac093-ce42-45bc-b1af-a2ce5aaf2a75-00-am1i63e6mg8n.reed.replit.dev/api/embed.js"
+          data-bot-id="demo-bot"
+          data-bot-token="3bd915bdc26b5d1c36b520cc15cea43fa32914aaa9bea274"
+          strategy="afterInteractive"
+          async
+        />
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>

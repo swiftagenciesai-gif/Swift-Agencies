@@ -82,12 +82,10 @@ export const PLANS: Plan[] = [
     name: "Enterprise",
     price: 0,
     monthlyPrice: 0,
-    botCount: "Multiple website chatbots",
+    botCount: "Custom AI system",
     custom: true,
-    tagline: "Custom multi-bot AI systems, strategy, and dedicated ongoing support.",
+    tagline: "Custom AI systems, strategy, and dedicated ongoing support.",
     features: [
-      "Multiple chatbots",
-      "Multiple websites",
       "Custom integrations",
       "API access",
       "Advanced automation",
@@ -106,7 +104,6 @@ export type AddOn = {
 
 export const ADD_ONS: AddOn[] = [
   { id: "additional-chatbot", name: "Additional chatbot", price: 399, description: "Add another custom chatbot." },
-  { id: "additional-website", name: "Additional website", price: 199, description: "Deploy on another domain." },
   { id: "crm-integration", name: "CRM integration", price: 250, description: "Sync leads to your CRM." },
   { id: "calendar-integration", name: "Calendar integration", price: 150, description: "Let customers book time." },
   { id: "custom-api", name: "Custom API", price: 500, description: "Connect to your systems." },

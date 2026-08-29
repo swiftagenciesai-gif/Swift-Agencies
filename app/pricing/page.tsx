@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, Check } from "lucide-react"
+import { ArrowLeft, ArrowRight, Check } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { PLANS } from "@/lib/pricing"
@@ -7,7 +7,12 @@ import { PLANS } from "@/lib/pricing"
 export default function PricingPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
-      <div className="max-w-2xl">
+      <Link href="/" className="inline-flex items-center gap-2 text-sm text-[#5d4c42] transition-colors hover:text-[#1d1915]">
+        <ArrowLeft className="h-4 w-4" />
+        Back to main menu
+      </Link>
+
+      <div className="max-w-2xl mt-10">
         <Badge variant="outline" className="mb-4">Investment</Badge>
         <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">Choose the intelligence your business needs.</h1>
         <p className="mt-5 text-lg text-muted-foreground">Every package is built for website chatbots, with setup, training, deployment, and ongoing support included at the right level.</p>
