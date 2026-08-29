@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
+import Script from "next/script"
 import { Cormorant_Garamond, Manrope } from "next/font/google"
 import "./globals.css"
 
@@ -57,12 +58,12 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         {children}
-        <script
+        <Script
           src="https://swiftagencies-gilt.vercel.app/widget.js"
+          strategy="afterInteractive"
           data-bot-id="bot_ui0idnak"
           data-company="Swift Agencies"
           data-color="#ffc4ab"
-          defer
         />
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
