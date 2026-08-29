@@ -39,9 +39,10 @@ export default function SignInPage() {
               <Link href="/contact" className="hover:text-[#1d1915]">Need help?</Link>
             </div>
 
-            <Button asChild size="lg" className="w-full rounded-full bg-[#1d1915] px-6 text-[#f8f4ef] hover:bg-[#2d251f]">
-              <Link href="/configure">
-                Continue <ArrowRight className="h-4 w-4" />
+            <Button asChild size="lg" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#1d1915] px-6 text-[#f8f4ef] hover:bg-[#2d251f]">
+              <Link href="/configure" className="inline-flex items-center justify-center gap-2">
+                <span>Continue</span>
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
           </form>

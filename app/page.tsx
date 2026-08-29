@@ -120,13 +120,14 @@ export default function HomePage() {
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" className="rounded-full bg-[#1d1915] px-6 text-[#f9f5f0] shadow-[0_18px_35px_rgba(29,25,21,0.16)] transition-all duration-500 hover:-translate-y-1 hover:rounded-[1.2rem] hover:bg-[#2c241f]">
-                  <Link href="/configure">
-                    Start your project <ArrowRight className="h-4 w-4" />
+                <Button asChild size="lg" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1d1915] px-6 text-[#f9f5f0] shadow-[0_18px_35px_rgba(29,25,21,0.16)] transition-all duration-500 hover:-translate-y-1 hover:rounded-[1.2rem] hover:bg-[#2c241f]">
+                  <Link href="/configure" className="inline-flex items-center justify-center gap-2">
+                    <span>Start your project</span>
+                    <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full border-[#1d1915]/15 bg-white/60 px-6 text-[#1d1915] transition-all duration-500 hover:-translate-y-1 hover:border-[#ef6d53]/40 hover:bg-[#fff7f3]">
-                  <Link href="/pricing">See investment</Link>
+                <Button asChild variant="outline" size="lg" className="inline-flex items-center justify-center gap-2 rounded-full border-[#1d1915]/15 bg-white/60 px-6 text-[#1d1915] transition-all duration-500 hover:-translate-y-1 hover:border-[#ef6d53]/40 hover:bg-[#fff7f3]">
+                  <Link href="/pricing" className="inline-flex items-center justify-center gap-2">See investment</Link>
                 </Button>
               </div>
 
@@ -357,9 +358,10 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <Button asChild size="lg" className="w-full gap-2 rounded-full bg-[#1d1915] px-6 text-[#f8f4ef] hover:bg-[#2d251f] sm:w-fit">
-                  <Link href={TALLY_URL}>
-                    Start your onboarding <ArrowRight className="h-4 w-4" />
+                <Button asChild size="lg" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#1d1915] px-6 text-[#f8f4ef] hover:bg-[#2d251f] sm:w-fit">
+                  <Link href={TALLY_URL} className="inline-flex items-center justify-center gap-2">
+                    <span>Start your onboarding</span>
+                    <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
               </div>
@@ -391,13 +393,14 @@ export default function HomePage() {
               We build calm, capable AI systems that feel like part of the business — not a bolted-on demo widget.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button asChild size="lg" className="rounded-full bg-[#f9f5f0] px-6 text-[#1d1915] hover:bg-[#fffaf5]">
-                <Link href="/configure">
-                  Start building <ArrowRight className="h-4 w-4" />
+              <Button asChild size="lg" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f9f5f0] px-6 text-[#1d1915] hover:bg-[#fffaf5]">
+                <Link href="/configure" className="inline-flex items-center justify-center gap-2">
+                  <span>Start building</span>
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full border-white/20 bg-transparent px-6 text-[#f9f5f0] hover:bg-white/5">
-                <Link href="/contact">Talk to us</Link>
+              <Button asChild size="lg" variant="outline" className="inline-flex items-center justify-center gap-2 rounded-full border-white/20 bg-transparent px-6 text-[#f9f5f0] hover:bg-white/5">
+                <Link href="/contact" className="inline-flex items-center justify-center gap-2">Talk to us</Link>
               </Button>
             </div>
           </div>

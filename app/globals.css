@@ -130,10 +130,13 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
     background-image:
       radial-gradient(circle at top, rgba(239, 109, 83, 0.16), transparent 30%),
       radial-gradient(circle at bottom right, rgba(110, 168, 255, 0.12), transparent 26%);
     min-height: 100vh;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
@@ -141,6 +144,11 @@
   .display-font {
     font-family: var(--font-display), Georgia, serif;
     letter-spacing: -0.04em;
+  }
+
+  .brand-copy {
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.015em;
   }
 
   .soft-shell {

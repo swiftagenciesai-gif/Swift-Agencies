@@ -66,9 +66,10 @@ export default function ContactPage() {
               <textarea rows={5} className="w-full rounded-[1rem] border border-[#1d1915]/10 bg-white px-3 py-3 text-[#1d1915] outline-none transition focus:border-[#ef6d53]/40" placeholder="We need a bot that answers FAQs, captures leads, and books consultations without sounding robotic." />
             </label>
 
-            <Button asChild size="lg" className="rounded-full bg-[#1d1915] px-6 text-[#f8f4ef] hover:bg-[#2d251f]">
-              <Link href="/configure">
-                Send brief <ArrowRight className="h-4 w-4" />
+            <Button asChild size="lg" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1d1915] px-6 text-[#f8f4ef] hover:bg-[#2d251f]">
+              <Link href="/configure" className="inline-flex items-center justify-center gap-2">
+                <span>Send brief</span>
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
           </form>

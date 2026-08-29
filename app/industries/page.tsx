@@ -60,9 +60,10 @@ export default function IndustriesPage() {
         <p className="mx-auto mt-3 max-w-2xl text-base text-[#5d4c42]">
           Every engagement starts with a conversation about your customer journey, not a prebuilt template.
         </p>
-        <Button asChild size="lg" className="mt-6 rounded-full bg-[#1d1915] px-6 text-[#f8f4ef] hover:bg-[#2d251f]">
-          <Link href="/configure">
-            Plan your build <ArrowRight className="h-4 w-4" />
+        <Button asChild size="lg" className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#1d1915] px-6 text-[#f8f4ef] hover:bg-[#2d251f]">
+          <Link href="/configure" className="inline-flex items-center justify-center gap-2">
+            <span>Plan your build</span>
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </Button>
       </div>
