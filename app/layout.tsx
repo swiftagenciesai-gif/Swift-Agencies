@@ -1,7 +1,6 @@
 import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
 import { Cormorant_Garamond, Manrope } from "next/font/google"
-import { BotpressWidget } from "@/components/botpress-widget"
 import "./globals.css"
 
 const displayFont = Cormorant_Garamond({
@@ -58,9 +57,12 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         {children}
-        <BotpressWidget
-          injectUrl="https://cdn.botpress.cloud/webchat/v5.0/inject.js"
-          configUrl="https://files.bpcontent.cloud/2026/08/14/00/20260814001647-NYKRVX7V.js"
+        <script
+          src="https://swiftagencies-gilt.vercel.app/widget.js"
+          data-bot-id="bot_ui0idnak"
+          data-company="Swift Agencies"
+          data-color="#ffc4ab"
+          defer
         />
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
