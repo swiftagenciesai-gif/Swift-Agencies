@@ -4,7 +4,6 @@ import Link from "next/link"
 import { useState } from "react"
 import { SiteHeader } from "@/components/marketing/site-header"
 import { SiteFooter } from "@/components/marketing/site-footer"
-import { ChatMockup } from "@/components/marketing/chat-mockup"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -23,23 +22,26 @@ import {
   ShieldCheck,
   Wand2,
   Rocket,
+  Check,
+  ArrowUpRight,
+  Bot,
 } from "lucide-react"
 
 const STEPS = [
   {
     icon: Wand2,
     title: "Tell us about your business",
-    desc: "Answer a short guided questionnaire about your company, goals, and how you want your bot to behave.",
+    desc: "Answer a short guided questionnaire about your company, goals, and the conversations you want your bot to handle.",
   },
   {
     icon: Sparkles,
     title: "We build & train your bot",
-    desc: "Our team configures a custom AI chatbot on your knowledge, personality, and workflows — then tests it end to end.",
+    desc: "Our team configures your voice, knowledge base, and workflows so the assistant actually reflects the way you sell and serve.",
   },
   {
     icon: Rocket,
     title: "Go live in days",
-    desc: "Drop one snippet on your site (or we install it for you) and your assistant starts answering customers 24/7.",
+    desc: "We drop the bot onto your site and tune the first conversations before you ever have to chase a missed lead again.",
   },
 ]
 
@@ -53,12 +55,12 @@ const BENEFITS = [
 ]
 
 const FAQS = [
-  { q: "How long until my chatbot is live?", a: "Most Starter and Growth bots go live within a few business days of you completing the questionnaire and approving the preview. Pro and Enterprise builds vary with scope." },
-  { q: "Do I need any technical skills?", a: "No. You fill out a guided questionnaire, we build everything, and we either give you a one-line snippet or install it on your site for you." },
-  { q: "What does the chatbot actually do?", a: "It answers customer questions from your knowledge base, captures and qualifies leads, books appointments, hands off to a human when needed, and can connect to your calendar or CRM." },
-  { q: "Is this a monthly subscription?", a: "Our core offering is a one-time custom build. Optional add-ons like monthly maintenance are available if you want ongoing tuning and updates." },
-  { q: "Can it match my brand?", a: "Yes. You control the bot's name, personality, tone, colors, and welcome message during configuration, and our team polishes the details." },
-  { q: "What if I need something custom?", a: "That's what we do. Choose the Pro or Enterprise plan (or add-ons) and we'll build custom workflows, integrations, and multi-bot systems." },
+  { q: "How long until my chatbot is live?", a: "Most Starter and Growth builds go live within a few business days of your questionnaire and approval. Pro and Enterprise scopes vary depending on integrations and custom logic." },
+  { q: "Do I need any technical skills?", a: "No. You answer the guided questions, we handle the build, and we either install one snippet on your website or do the deployment for you." },
+  { q: "What does the chatbot actually do?", a: "It answers customer questions from your knowledge base, captures qualified leads, books appointments, escalates to a human when needed, and can connect to your CRM or calendar." },
+  { q: "Is this a monthly subscription?", a: "The main build is a one-time custom investment. Optional maintenance and tuning is available if you want ongoing optimization after launch." },
+  { q: "Can it match my brand?", a: "Yes. You control the bot's name, personality, tone, colors, and welcome message during configuration, and our team shapes the final experience around your business." },
+  { q: "What if I need something custom?", a: "That is exactly where we work best. Choose the Pro or Enterprise package, or add a custom workflow or API build, and we shape the system to your operations." },
 ]
 
 const BOT_OPTIONS = {
@@ -73,7 +75,7 @@ const ADD_ONS = [
   { id: "crm", name: "Advanced CRM Sync", setup: 25, monthly: 10 },
 ]
 
-const TALLY_URL = "https://tally.so"
+const TALLY_URL = "/configure"
 
 export default function HomePage() {
   const [botPreferences, setBotPreferences] = useState({
@@ -86,7 +88,7 @@ export default function HomePage() {
   const monthlyTotal = 350 + selectedAddOns.reduce((total, id) => total + (ADD_ONS.find((addon) => addon.id === id)?.monthly ?? 0), 0)
 
   const toggleAddOn = (id: string) => {
-    setSelectedAddOns((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id])
+    setSelectedAddOns((current) => (current.includes(id) ? current.filter((item) => item !== id) : [...current, id]))
   }
 
   return (
@@ -94,183 +96,307 @@ export default function HomePage() {
       <SiteHeader />
 
       <main className="flex-1">
-        {/* Hero */}
         <section className="relative overflow-hidden">
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[500px] opacity-60"
-            style={{
-              background:
-                "radial-gradient(ellipse 80% 60% at 50% -10%, oklch(0.68 0.16 250 / 0.25), transparent 70%)",
-            }}
-          />
-          <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
-            <div>
-              <Badge variant="secondary" className="mb-5 gap-1.5 rounded-full py-1 pl-1.5 pr-3">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                  <Sparkles className="h-3 w-3" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[540px] opacity-100">
+            <div className="absolute left-1/2 top-0 h-[420px] w-[60%] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,_rgba(239,109,83,0.22),transparent_60%)] blur-3xl" />
+            <div className="absolute right-[10%] top-12 h-52 w-52 rounded-full bg-[radial-gradient(circle,_rgba(110,168,255,0.18),transparent_60%)] blur-3xl" />
+          </div>
+
+          <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
+            <div className="relative">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#1c1a17]/10 bg-[#f8f3ed] px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-[#4b3b35] shadow-[0_10px_30px_rgba(31,22,18,0.05)]">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#ef6d53] text-[#fffaf5]">
+                  <Sparkles className="h-2.5 w-2.5" />
                 </span>
-                Custom AI chatbots, done for you
-              </Badge>
-              <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-                Never miss another customer.
+                Built for real business conversations
+              </div>
+
+              <h1 className="display-font max-w-xl text-[3.6rem] leading-[0.82] text-[#1d1915] sm:text-[4.5rem] lg:text-[6rem]">
+                A website bot that feels like your best operator.
               </h1>
-              <p className="mt-5 max-w-md text-pretty text-lg text-muted-foreground">
-                We build custom AI chatbots that answer your customers, capture leads, and handle
-                repetitive support — working 24/7 on your website.
+
+              <p className="mt-6 max-w-xl text-lg leading-8 text-[#5d4c42]">
+                We design custom AI chatbots that answer questions with nuance, capture demand, and keep your shop running smoothly after hours without feeling like a generic prototype.
               </p>
+
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" className="gap-2">
+                <Button asChild size="lg" className="rounded-full bg-[#1d1915] px-6 text-[#f9f5f0] shadow-[0_18px_35px_rgba(29,25,21,0.16)] transition-all duration-500 hover:-translate-y-1 hover:rounded-[1.2rem] hover:bg-[#2c241f]">
                   <Link href="/configure">
-                    Build your chatbot <ArrowRight className="h-4 w-4" />
+                    Start your project <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link href="/pricing">See pricing</Link>
+                <Button asChild variant="outline" size="lg" className="rounded-full border-[#1d1915]/15 bg-white/60 px-6 text-[#1d1915] transition-all duration-500 hover:-translate-y-1 hover:border-[#ef6d53]/40 hover:bg-[#fff7f3]">
+                  <Link href="/pricing">See investment</Link>
                 </Button>
               </div>
-              <p className="mt-4 text-sm text-muted-foreground">
-                From $1,500 setup + $350/month · Website chatbot · Managed for you
-              </p>
+
+              <div className="mt-8 flex flex-wrap items-center gap-3 text-sm text-[#5d4c42]">
+                {[
+                  "24/7 coverage",
+                  "Lead capture",
+                  "Custom brand voice",
+                ].map((item) => (
+                  <span key={item} className="inline-flex items-center gap-2 rounded-full border border-[#1c1a17]/10 bg-[#f6f1eb] px-3 py-1.5">
+                    <Check className="h-3.5 w-3.5 text-[#ef6d53]" />
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <div className="flex justify-center lg:justify-end">
-              <ChatMockup />
+            <div className="relative flex justify-center lg:justify-end">
+              <div className="soft-shell relative w-full max-w-[560px] rounded-[2.2rem] border border-[#1d1915]/10 bg-[#f7f1ea]/80 p-3 sm:p-4">
+                <div className="editorial-grid absolute inset-0 rounded-[2.2rem] opacity-60" />
+
+                <div className="relative overflow-hidden rounded-[1.8rem] border border-[#1d1915]/10 bg-[#1b1714] p-4 shadow-[0_30px_80px_rgba(20,15,12,0.22)]">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-3 text-[0.65rem] uppercase tracking-[0.2em] text-white/60">
+                    <div className="flex items-center gap-2">
+                      <span className="flex h-2.5 w-2.5 rounded-full bg-[#89f0b0]" />
+                      Live concierge
+                    </div>
+                    <span>now answering</span>
+                  </div>
+
+                  <div className="mt-5 space-y-4 text-sm text-white/85">
+                    <div className="max-w-[84%] rounded-[1.2rem] rounded-bl-md bg-white/6 px-4 py-3">
+                      Hi there — I can help with pricing, service areas, and booking a call.
+                    </div>
+                    <div className="ml-auto max-w-[78%] rounded-[1.2rem] rounded-br-md bg-[#ef6d53] px-4 py-3 text-[#fffaf5]">
+                      We can get you a quote for a chatbot that handles FAQs and lead capture.
+                    </div>
+                    <div className="max-w-[88%] rounded-[1.2rem] rounded-bl-md bg-white/6 px-4 py-3">
+                      I can also qualify the lead before it reaches your team.
+                    </div>
+                  </div>
+
+                  <div className="mt-6 grid grid-cols-3 gap-3 text-left">
+                    <div className="rounded-[1rem] border border-white/10 bg-white/4 p-3">
+                      <p className="text-[0.58rem] uppercase tracking-[0.18em] text-white/55">Bot score</p>
+                      <p className="mt-2 text-2xl font-semibold text-white">94%</p>
+                    </div>
+                    <div className="rounded-[1rem] border border-white/10 bg-white/4 p-3">
+                      <p className="text-[0.58rem] uppercase tracking-[0.18em] text-white/55">Leads</p>
+                      <p className="mt-2 text-2xl font-semibold text-white">73</p>
+                    </div>
+                    <div className="rounded-[1rem] border border-white/10 bg-white/4 p-3">
+                      <p className="text-[0.58rem] uppercase tracking-[0.18em] text-white/55">Reply time</p>
+                      <p className="mt-2 text-2xl font-semibold text-white">2m</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="absolute -left-4 bottom-7 rotate-[-7deg] rounded-full border border-[#1d1915]/10 bg-[#fffaf5] px-4 py-2 text-xs font-medium text-[#2d241f] shadow-[0_16px_30px_rgba(29,25,21,0.08)]">
+                  98% FAQ coverage
+                </div>
+
+                <div className="absolute -right-4 top-7 rotate-[8deg] rounded-full border border-[#ef6d53]/30 bg-[#fff4f0] px-4 py-2 text-xs font-medium text-[#af4a33] shadow-[0_16px_30px_rgba(239,109,83,0.12)]">
+                  customized for your workflow
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* AI preferences creator */}
-        <section id="builder" className="border-t border-border/60 bg-card/30">
-          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
+        <section id="builder" className="border-t border-[#1d1915]/10 bg-[#f6f0ea]/70">
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
             <div className="max-w-2xl">
-              <Badge variant="outline" className="mb-4">01 / Configure</Badge>
-              <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">Build a bot with a point of view.</h2>
-              <p className="mt-3 text-muted-foreground">Choose the job, voice, and intelligence level for your website chatbot. Your selections stay local to this page.</p>
+              <Badge variant="outline" className="mb-4 rounded-full border-[#1d1915]/10 bg-white/70 text-[#4b3b35]">
+                01 / Configure
+              </Badge>
+              <h2 className="display-font text-5xl leading-none text-[#1d1915] sm:text-6xl">
+                Shape the voice, scope, and purpose.
+              </h2>
+              <p className="mt-3 text-base text-[#5d4c42]">
+                Pick the way the bot behaves, what it handles, and how much intelligence it brings to a conversation.
+              </p>
             </div>
-            <div className="mt-10 grid gap-5 lg:grid-cols-[1.1fr_.9fr]">
-              <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+
+            <div className="mt-10 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="rounded-[2rem] border border-[#1d1915]/10 bg-[#fffdfb] p-6 shadow-[0_25px_60px_rgba(31,22,18,0.04)] sm:p-8">
                 {(Object.entries(BOT_OPTIONS) as [keyof typeof BOT_OPTIONS, readonly string[]][]).map(([category, options]) => (
                   <div key={category} className="not-first:mt-8">
-                    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">{category}</p>
+                    <p className="mb-3 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#5d4c42]">{category}</p>
                     <div className="flex flex-wrap gap-2">
-                      {options.map((option) => <button key={option} type="button" onClick={() => setBotPreferences((current) => ({ ...current, [category]: option }))} className={`rounded-lg border px-3 py-2 text-sm transition-all hover:-translate-y-0.5 ${botPreferences[category] === option ? "border-primary bg-primary/15 text-foreground shadow-sm shadow-primary/10" : "border-border text-muted-foreground hover:border-primary/60 hover:text-foreground"}`}>{option}</button>)}
+                      {options.map((option) => (
+                        <button
+                          key={option}
+                          type="button"
+                          onClick={() => setBotPreferences((current) => ({ ...current, [category]: option }))}
+                          className={`rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${
+                            botPreferences[category] === option
+                              ? "border-[#1d1915] bg-[#1d1915] text-[#f8f4ef] shadow-[0_10px_25px_rgba(29,25,21,0.15)]"
+                              : "border-[#1d1915]/10 bg-[#fffaf6] text-[#4b3b35] hover:border-[#ef6d53]/40 hover:text-[#1d1915]"
+                          }`}
+                        >
+                          {option}
+                        </button>
+                      ))}
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="flex min-h-[280px] flex-col justify-between rounded-2xl border border-primary/50 bg-gradient-to-br from-primary/15 via-card to-card p-6 sm:p-8">
-                <div><div className="mb-8 flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground"><Sparkles className="h-5 w-5" /></div><h3 className="max-w-sm text-2xl font-semibold tracking-tight">Your {botPreferences.tone.toLowerCase()} {botPreferences.objective.toLowerCase()} agent.</h3><p className="mt-3 max-w-sm text-sm leading-6 text-muted-foreground">A {botPreferences.intelligence.toLowerCase()} website chatbot, ready to make a thoughtful first impression.</p></div>
-                <p className="mt-8 flex items-center gap-2 text-xs text-muted-foreground"><span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_theme(colors.emerald.400)]" /> Configuration saved locally</p>
+
+              <div className="relative flex min-h-[280px] flex-col justify-between overflow-hidden rounded-[2rem] border border-[#ef6d53]/30 bg-[linear-gradient(135deg,_rgba(239,109,83,0.12),_rgba(255,255,255,0.7)_55%,_rgba(120,158,255,0.14))] p-6 sm:p-8">
+                <div>
+                  <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1d1915] text-[#f8f4ef]">
+                    <Bot className="h-5 w-5" />
+                  </div>
+                  <h3 className="display-font text-4xl leading-none text-[#1d1915]">
+                    Your {botPreferences.tone.toLowerCase()} {botPreferences.objective.toLowerCase()} agent.
+                  </h3>
+                  <p className="mt-3 max-w-sm text-sm leading-6 text-[#4b3b35]">
+                    A {botPreferences.intelligence.toLowerCase()} website bot, designed to sound human and behave with clarity on the moments that matter most.
+                  </p>
+                </div>
+
+                <div className="mt-8 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[#4b3b35]">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#6ad7a6] shadow-[0_0_18px_rgba(106,215,166,0.8)]" />
+                  configuration saved locally
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* How it works */}
-        <section id="how-it-works" className="border-t border-border/60 bg-card/30">
-          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
+        <section id="how-it-works" className="border-t border-[#1d1915]/10 bg-[#f9f5f1]">
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
             <div className="max-w-2xl">
-              <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                From questionnaire to live bot in three steps
+              <h2 className="display-font text-5xl leading-none text-[#1d1915] sm:text-6xl">
+                A simple process with a thoughtful finish.
               </h2>
-              <p className="mt-3 text-muted-foreground">
-                You describe your business. We handle the build. Your customers get instant answers.
+              <p className="mt-4 text-base text-[#5d4c42]">
+                You describe your business. We handle the build. Your customers get a more human, helpful first response.
               </p>
             </div>
+
             <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {STEPS.map((s, i) => (
-                <div key={s.title} className="relative rounded-2xl border border-border bg-card p-6">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <s.icon className="h-5 w-5" />
-                  </span>
-                  <p className="mt-4 font-mono text-sm text-muted-foreground">Step {i + 1}</p>
-                  <h3 className="mt-1 text-lg font-medium">{s.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground text-pretty">{s.desc}</p>
+              {STEPS.map((step, index) => (
+                <div key={step.title} className="relative rounded-[1.8rem] border border-[#1d1915]/10 bg-white/70 p-6 shadow-[0_20px_50px_rgba(31,22,18,0.03)] transition-transform duration-500 hover:-translate-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#ef6d53]/10 text-[#af4a33]">
+                      <step.icon className="h-5 w-5" />
+                    </span>
+                    <span className="text-[0.7rem] uppercase tracking-[0.22em] text-[#5d4c42]">Step {index + 1}</span>
+                  </div>
+                  <h3 className="mt-5 text-xl font-medium text-[#1d1915]">{step.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#5d4c42]">{step.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Benefits */}
-        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
+        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
           <div className="max-w-2xl">
-            <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-              Everything your business needs from a chatbot
+            <h2 className="display-font text-5xl leading-none text-[#1d1915] sm:text-6xl">
+              Everything your business needs from a chatbot.
             </h2>
-            <p className="mt-3 text-muted-foreground">
-              Not a generic widget — a custom assistant trained on your business and wired into your tools.
+            <p className="mt-4 text-base text-[#5d4c42]">
+              Not a generic widget — a custom assistant trained on your business and connected to your real tools.
             </p>
           </div>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-            {BENEFITS.map((b) => (
-              <div key={b.title} className="bg-card p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <b.icon className="h-5 w-5" />
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {BENEFITS.map((benefit) => (
+              <div key={benefit.title} className="rounded-[1.7rem] border border-[#1d1915]/10 bg-white/70 p-6 shadow-[0_18px_45px_rgba(31,22,18,0.03)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(31,22,18,0.06)]">
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#e8e1d7] text-[#1d1915]">
+                  <benefit.icon className="h-5 w-5" />
                 </span>
-                <h3 className="mt-4 font-medium">{b.title}</h3>
-                <p className="mt-1.5 text-sm text-muted-foreground text-pretty">{b.desc}</p>
+                <h3 className="mt-5 text-lg font-medium text-[#1d1915]">{benefit.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#5d4c42]">{benefit.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Pricing preview */}
-        <section id="pricing" className="border-t border-border/60 bg-card/30">
-          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
+        <section id="pricing" className="border-t border-[#1d1915]/10 bg-[#f4efe9]">
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
             <div className="max-w-2xl">
-              <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                A system that earns its keep
+              <h2 className="display-font text-5xl leading-none text-[#1d1915] sm:text-6xl">
+                A system that earns its keep.
               </h2>
-              <p className="mt-3 text-muted-foreground">
-                Start with the flagship package, then add exactly what your operation needs.
+              <p className="mt-4 text-base text-[#5d4c42]">
+                Start with the flagship package and add exactly what your operation needs, not a bloated template.
               </p>
             </div>
-            <div id="calculator" className="mt-12 grid gap-6 lg:grid-cols-[.85fr_1.15fr]">
-              <div className="rounded-2xl border border-border bg-card p-6 sm:p-8"><h3 className="text-xl font-semibold">Add-on features</h3><p className="mt-2 text-sm text-muted-foreground">Tailor your setup without paying for what you do not need.</p><div className="mt-6">{ADD_ONS.map((addon) => <label key={addon.id} className="flex cursor-pointer items-start gap-3 border-t border-border py-4"><input type="checkbox" checked={selectedAddOns.includes(addon.id)} onChange={() => toggleAddOn(addon.id)} className="mt-1 h-4 w-4 accent-primary" /><span className="flex flex-1 justify-between gap-3 text-sm"><span>{addon.name}</span><span className="whitespace-nowrap text-xs text-primary">+${addon.setup} / +${addon.monthly}mo</span></span></label>)}</div></div>
-              <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-primary/60 bg-card p-6 shadow-lg shadow-primary/10 sm:p-8"><div><Badge className="mb-5">Flagship package</Badge><h3 className="text-2xl font-semibold tracking-tight">The Swift Partnership</h3><p className="mt-2 max-w-lg text-sm text-muted-foreground">A high-touch AI growth system built around your goals, your voice, and your opportunities.</p></div><div className="my-10 grid grid-cols-2 gap-4"><div className="border-t border-border pt-4"><p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Setup fee</p><p className="mt-2 text-4xl font-semibold tracking-tight">${setupTotal.toLocaleString()}</p></div><div className="border-t border-border pt-4"><p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Monthly retainer</p><p className="mt-2 text-4xl font-semibold tracking-tight">${monthlyTotal.toLocaleString()}<span className="text-base font-normal text-primary">/mo</span></p></div></div><Button asChild size="lg" className="w-full gap-2 sm:w-fit"><a href={TALLY_URL} target="_blank" rel="noreferrer">Start your onboarding <ArrowRight className="h-4 w-4" /></a></Button></div>
+
+            <div id="calculator" className="mt-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+              <div className="rounded-[2rem] border border-[#1d1915]/10 bg-[#fffdfb] p-6 shadow-[0_20px_50px_rgba(31,22,18,0.04)] sm:p-8">
+                <h3 className="text-2xl font-medium text-[#1d1915]">Add-on features</h3>
+                <p className="mt-2 text-sm text-[#5d4c42]">Tailor the build without paying for a generic platform you do not need.</p>
+                <div className="mt-6 space-y-0">
+                  {ADD_ONS.map((addon) => (
+                    <label key={addon.id} className="flex cursor-pointer items-start gap-3 border-t border-[#1d1915]/10 py-4 first:border-t-0">
+                      <input type="checkbox" checked={selectedAddOns.includes(addon.id)} onChange={() => toggleAddOn(addon.id)} className="mt-1 h-4 w-4 accent-[#ef6d53]" />
+                      <span className="flex flex-1 justify-between gap-3 text-sm text-[#1d1915]">
+                        <span>{addon.name}</span>
+                        <span className="whitespace-nowrap text-xs font-medium text-[#af4a33]">+${addon.setup} / +${addon.monthly}mo</span>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div className="relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-[#ef6d53]/30 bg-[linear-gradient(135deg,_rgba(239,109,83,0.1),_rgba(255,255,255,0.4),_rgba(120,158,255,0.12))] p-6 shadow-[0_28px_70px_rgba(239,109,83,0.08)] sm:p-8">
+                <div>
+                  <Badge className="mb-5 rounded-full border-[#1d1915]/10 bg-white/80 text-[#2f2723]">Flagship package</Badge>
+                  <h3 className="display-font text-4xl leading-none text-[#1d1915]">The Swift Partnership</h3>
+                  <p className="mt-3 max-w-lg text-sm leading-6 text-[#4b3b35]">
+                    A high-touch AI growth system built around your goals, your voice, and the actual moments your customers need help.
+                  </p>
+                </div>
+
+                <div className="my-10 grid grid-cols-2 gap-4">
+                  <div className="border-t border-[#1d1915]/10 pt-4">
+                    <p className="text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-[#5d4c42]">Setup fee</p>
+                    <p className="mt-2 text-4xl font-semibold tracking-tight text-[#1d1915]">${setupTotal.toLocaleString()}</p>
+                  </div>
+                  <div className="border-t border-[#1d1915]/10 pt-4">
+                    <p className="text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-[#5d4c42]">Monthly</p>
+                    <p className="mt-2 text-4xl font-semibold tracking-tight text-[#1d1915]">${monthlyTotal.toLocaleString()}<span className="text-base font-normal text-[#af4a33]">/mo</span></p>
+                  </div>
+                </div>
+
+                <Button asChild size="lg" className="w-full gap-2 rounded-full bg-[#1d1915] px-6 text-[#f8f4ef] hover:bg-[#2d251f] sm:w-fit">
+                  <Link href={TALLY_URL}>
+                    Start your onboarding <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* FAQ */}
-        <section id="faq" className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:py-24">
-          <h2 className="text-balance text-center text-3xl font-semibold tracking-tight sm:text-4xl">
-            Frequently asked questions
+        <section id="faq" className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:py-24">
+          <h2 className="display-font text-center text-5xl leading-none text-[#1d1915] sm:text-6xl">
+            A few clarifying answers.
           </h2>
           <Accordion type="single" collapsible className="mt-10">
-            {FAQS.map((f, i) => (
-              <AccordionItem key={i} value={`item-${i}`}>
-                <AccordionTrigger className="text-left text-base">{f.q}</AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">{f.a}</AccordionContent>
+            {FAQS.map((item, index) => (
+              <AccordionItem key={index} value={`item-${index}`} className="rounded-[1.4rem] border border-[#1d1915]/10 bg-white/70 px-4 shadow-[0_18px_35px_rgba(31,22,18,0.02)]">
+                <AccordionTrigger className="text-left text-base font-medium text-[#1d1915]">{item.q}</AccordionTrigger>
+                <AccordionContent className="text-sm leading-6 text-[#5d4c42]">{item.a}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </section>
 
-        {/* CTA */}
-        <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-card px-6 py-14 text-center sm:px-12">
-            <div
-              className="pointer-events-none absolute inset-0 -z-10 opacity-70"
-              style={{
-                background:
-                  "radial-gradient(ellipse 60% 80% at 50% 120%, oklch(0.68 0.16 250 / 0.25), transparent 70%)",
-              }}
-            />
-            <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-              Ready to put your customer service on autopilot?
+        <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6">
+          <div className="relative overflow-hidden rounded-[2.5rem] border border-[#1d1915]/10 bg-[#1d1915] px-6 py-14 text-center text-[#f9f5f0] sm:px-12">
+            <div className="pointer-events-none absolute inset-0 -z-10 opacity-90 bg-[radial-gradient(circle_at_center,_rgba(239,109,83,0.3),transparent_42%)]" />
+            <h2 className="display-font text-5xl leading-none sm:text-6xl">
+              Ready for a quieter, smarter customer experience?
             </h2>
-            <p className="mx-auto mt-3 max-w-xl text-pretty text-muted-foreground">
-              Build your custom AI chatbot in minutes. We&apos;ll handle the rest.
+            <p className="mx-auto mt-4 max-w-xl text-base text-[#e7ddd4]">
+              We build calm, capable AI systems that feel like part of the business — not a bolted-on demo widget.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button asChild size="lg" className="gap-2">
+              <Button asChild size="lg" className="rounded-full bg-[#f9f5f0] px-6 text-[#1d1915] hover:bg-[#fffaf5]">
                 <Link href="/configure">
                   Start building <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline">
+              <Button asChild size="lg" variant="outline" className="rounded-full border-white/20 bg-transparent px-6 text-[#f9f5f0] hover:bg-white/5">
                 <Link href="/contact">Talk to us</Link>
               </Button>
             </div>

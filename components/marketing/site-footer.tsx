@@ -4,11 +4,11 @@ import { Bot } from "lucide-react"
 export function SiteFooter() {
   return (
     <footer className="border-t border-border/60 bg-card/40">
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <div className="grid gap-8 md:grid-cols-4">
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 font-semibold">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-foreground text-background">
                 <Bot className="h-5 w-5" />
               </span>
               Swift Agencies
@@ -38,10 +38,10 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h4 className="text-sm font-medium">Legal</h4>
+            <h4 className="text-sm font-medium">Reach</h4>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/legal/privacy" className="hover:text-foreground">Privacy</Link></li>
-              <li><Link href="/legal/terms" className="hover:text-foreground">Terms</Link></li>
+              <li><a href="mailto:hello@swiftagencies.ai" className="hover:text-foreground">hello@swiftagencies.ai</a></li>
+              <li><a href="tel:+15551234567" className="hover:text-foreground">+1 (555) 123-4567</a></li>
             </ul>
           </div>
         </div>

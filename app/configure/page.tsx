@@ -49,7 +49,7 @@ export default function ConfigurePage() {
       const response = await fetch("/api/onboarding", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ companyName, contactEmail, website, planId: effectivePlan.id, needs, setupTotal, monthlyTotal }),
+        body: JSON.stringify({ companyName, contactEmail, website, tier: effectivePlan.id, estimatePrice: setupTotal, needs }),
       })
       if (!response.ok) throw new Error("Unable to save")
       setStatus("saved")
