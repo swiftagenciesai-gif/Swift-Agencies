@@ -59,11 +59,11 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         {children}
         <Script
-          src="/widget.js"
+          src="https://huggingface.co/spaces/SwiftAgencies/Chatbot-Factory/resolve/main/widget.js"
           strategy="afterInteractive"
-          data-bot-id="bot_ui0idnak"
+          data-bot-id="bot_ff42gelt"
           data-company="Swift Agencies"
-          data-color="#ffc4ab"
+          data-color="#ffb5af"
         />
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
