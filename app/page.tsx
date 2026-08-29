@@ -56,7 +56,7 @@ const BENEFITS = [
 
 const FAQS = [
   { q: "How long until my chatbot is live?", a: "Most Starter and Growth builds go live within a few business days of your questionnaire and approval. Pro and Enterprise scopes vary depending on integrations and custom logic." },
-  { q: "Do I need any technical skills?", a: "No. You answer the guided questions, we handle the build, and we either install one snippet on your website or do the deployment for you." },
+  { q: "Do I need any technical skills?", a: "No. You answer the guided questions, we handle the build, and we manage the deployment for you." },
   { q: "What does the chatbot actually do?", a: "It answers customer questions from your knowledge base, captures qualified leads, books appointments, escalates to a human when needed, and can connect to your CRM or calendar." },
   { q: "Is this a monthly subscription?", a: "The main build is a one-time custom investment. Optional maintenance and tuning is available if you want ongoing optimization after launch." },
   { q: "Can it match my brand?", a: "Yes. You control the bot's name, personality, tone, colors, and welcome message during configuration, and our team shapes the final experience around your business." },
@@ -390,7 +390,7 @@ export default function HomePage() {
               Ready for a quieter, smarter customer experience?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-base text-[#e7ddd4]">
-              We build calm, capable AI systems that feel like part of the business — not a bolted-on demo widget.
+              We build calm, capable AI systems that feel like part of the business — not a bolted-on demo experience.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button asChild size="lg" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f9f5f0] px-6 text-[#1d1915] hover:bg-[#fffaf5]">

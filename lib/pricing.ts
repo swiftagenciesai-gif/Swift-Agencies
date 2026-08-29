@@ -23,12 +23,11 @@ export const PLANS: Plan[] = [
     tagline: "A focused website chatbot with the essentials handled for you.",
     features: [
       "Custom AI chatbot",
-      "Website widget",
       "FAQ answering",
       "Basic knowledge base",
       "Lead capture",
       "Custom personality",
-      "Website widget installation",
+      "Deployment support",
       "Basic chatbot management",
       "Monthly support and tuning",
     ],

@@ -1,6 +1,5 @@
 import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
-import Script from "next/script"
 import { Cormorant_Garamond, Manrope } from "next/font/google"
 import "./globals.css"
 
@@ -19,13 +18,13 @@ const bodyFont = Manrope({
 export const metadata: Metadata = {
   title: "Swift Agencies — Custom AI Chatbots for Businesses",
   description:
-    "Swift Agencies builds custom AI chatbot widgets that handle customer questions, capture leads, and reduce customer-service overflow 24/7.",
+    "Swift Agencies designs custom AI chatbot systems that answer questions, capture leads, and reduce service bottlenecks 24/7.",
   generator: "v0.app",
   metadataBase: new URL("https://swiftagencies.ai"),
   openGraph: {
     title: "Swift Agencies — Custom AI Chatbots for Businesses",
     description:
-      "Custom AI chatbot widgets that answer customers, capture leads, and handle repetitive support 24/7.",
+      "Custom AI chatbots that answer customers, capture leads, and handle repetitive support 24/7.",
     type: "website",
   },
   icons: {
@@ -58,10 +57,6 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         {children}
-        <Script src="https://chat-bot-generator-rho.vercel.app/widget.js" strategy="afterInteractive" />
-        <Script id="botforge-mount" strategy="afterInteractive">
-          {`Botforge.mount({"botName":"Milo","business":"Swift Agencies","purpose":"Answer questions about our services, pricing, and booking availability. Be useful, concise, and friendly.","tone":"Warm and conversational","welcome":"Hey! What can I help you find?","color":"#ffb5af","position":"right","endpoint":"https://swift-delta-one.vercel.app"});`}
-        </Script>
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>

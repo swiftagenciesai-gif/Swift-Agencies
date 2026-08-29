@@ -56,7 +56,6 @@ export async function POST(request: Request) {
     const database = getPool()
     const companyId = crypto.randomUUID()
     const orderId = crypto.randomUUID()
-    const configurationId = crypto.randomUUID()
     const client = await database.connect()
 
     try {
@@ -83,13 +82,6 @@ export async function POST(request: Request) {
         ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
         [orderId, companyId, plan.id, plan.price, monthlyPrice, addOnPrice, setupPrice, "unpaid", "lead", details],
       )
-      await client.query(
-        `INSERT INTO "chatbot_configuration" (
-          "id", "companyId", "orderId", "botPurpose", "requirements", "widgetSettings", "botpressStatus"
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-        [configurationId, companyId, orderId, JSON.stringify({ needs }), JSON.stringify({ needs }), JSON.stringify({ platform: "website-widget" }), "Not Started"],
-      )
-
       await client.query("COMMIT")
     } catch (error) {
       await client.query("ROLLBACK")

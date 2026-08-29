@@ -103,37 +103,6 @@ export const orders = pgTable("orders", {
   updatedAt: timestamp("updatedAt").notNull().defaultNow(),
 })
 
-export const chatbotConfiguration = pgTable("chatbot_configuration", {
-  id: text("id").primaryKey(),
-  companyId: text("companyId").notNull(),
-  orderId: text("orderId"),
-  userId: text("userId"),
-  botName: text("botName"),
-  botPurpose: jsonb("botPurpose"),
-  personality: jsonb("personality"),
-  tone: text("tone"),
-  customInstructions: text("customInstructions"),
-  welcomeMessage: text("welcomeMessage"),
-  fallbackMessage: text("fallbackMessage"),
-  neverSay: text("neverSay"),
-  brandVoice: text("brandVoice"),
-  businessRules: text("businessRules"),
-  knowledge: jsonb("knowledge"),
-  features: jsonb("features"),
-  integrations: jsonb("integrations"),
-  requirements: jsonb("requirements"),
-  appearanceSettings: jsonb("appearanceSettings"),
-  widgetSettings: jsonb("widgetSettings"),
-  botpressBotName: text("botpressBotName"),
-  botpressBotId: text("botpressBotId"),
-  botpressScriptUrl: text("botpressScriptUrl"),
-  botpressProductionUrl: text("botpressProductionUrl"),
-  botpressStatus: text("botpressStatus").notNull().default("Not Started"),
-  botpressNotes: text("botpressNotes"),
-  createdAt: timestamp("createdAt").notNull().defaultNow(),
-  updatedAt: timestamp("updatedAt").notNull().defaultNow(),
-})
-
 export const leads = pgTable("leads", {
   id: text("id").primaryKey(),
   name: text("name"),
@@ -146,17 +115,6 @@ export const leads = pgTable("leads", {
   qualification: text("qualification"),
   createdAt: timestamp("createdAt").notNull().defaultNow(),
   updatedAt: timestamp("updatedAt").notNull().defaultNow(),
-})
-
-export const chatbotMessages = pgTable("chatbot_messages", {
-  id: text("id").primaryKey(),
-  companyId: text("companyId"),
-  botId: text("botId"),
-  conversationId: text("conversationId"),
-  direction: text("direction").notNull().default("inbound"),
-  message: text("message").notNull(),
-  metadata: jsonb("metadata"),
-  createdAt: timestamp("createdAt").notNull().defaultNow(),
 })
 
 export const activityLog = pgTable("activity_log", {
