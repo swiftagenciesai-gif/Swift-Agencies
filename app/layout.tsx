@@ -59,7 +59,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         {children}
         <Script
-          src="https://swiftagencies-gilt.vercel.app/widget.js"
+          src="/widget.js"
           strategy="afterInteractive"
           data-bot-id="bot_ui0idnak"
           data-company="Swift Agencies"
