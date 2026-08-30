@@ -74,7 +74,7 @@ const BOT_OPTIONS = {
 // being a dead end ("configuration saved locally" with nothing to do next).
 const NEED_FOR_OPTION: Record<string, string> = {
   "Lead Generation": "Lead generation",
-  "Customer Support": "Customer support",
+  "Customer Support": "Rapid customer support",
   "Appointment Booking": "Appointment booking",
   "Sophisticated AI": "Sophisticated AI behavior",
   "AI-to-AI workflows": "AI-to-AI workflows",
