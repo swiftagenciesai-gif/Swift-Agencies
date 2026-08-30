@@ -59,9 +59,8 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         {children}
         <Script
-          src="https://16cac093-ce42-45bc-b1af-a2ce5aaf2a75-00-am1i63e6mg8n.reed.replit.dev/api/embed.js"
-          data-bot-id="demo-bot"
-          data-bot-token="3bd915bdc26b5d1c36b520cc15cea43fa32914aaa9bea274"
+          src="https://chatbot-factory-kpu88h735-swift-agencies1.vercel.app/widget.js"
+          data-widget-id="ad79af17-756c-411c-a324-63dbfcec6158"
           strategy="afterInteractive"
           async
         />
