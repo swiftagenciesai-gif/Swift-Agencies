@@ -59,7 +59,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         {children}
         <Script
-          src="https://chatbot-factory-kpu88h735-swift-agencies1.vercel.app/widget.js"
+          src="https://chatbot-factory-mocha.vercel.app/widget.js"
           data-widget-id="ad79af17-756c-411c-a324-63dbfcec6158"
           strategy="afterInteractive"
           async
