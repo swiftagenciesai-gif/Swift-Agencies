@@ -160,34 +160,34 @@ export default function HomePage() {
 
                   <div className="mt-5 space-y-4 text-sm text-white/85">
                     <div className="max-w-[84%] rounded-[1.2rem] rounded-bl-md bg-white/6 px-4 py-3">
-                      Hi there — I can help with pricing, service areas, and booking a call.
+                      Hi! I'm here to help — are you looking for pricing, or do you want to book a quick call?
                     </div>
                     <div className="ml-auto max-w-[78%] rounded-[1.2rem] rounded-br-md bg-[#ef6d53] px-4 py-3 text-[#fffaf5]">
-                      We can get you a quote for a chatbot that handles FAQs and lead capture.
+                      We run a home services business and need something that handles quote requests after hours.
                     </div>
                     <div className="max-w-[88%] rounded-[1.2rem] rounded-bl-md bg-white/6 px-4 py-3">
-                      I can also qualify the lead before it reaches your team.
+                      That's exactly what our Growth plan is built for — I can capture the request, qualify the lead, and hand it to your team in the morning. Want the pricing breakdown?
                     </div>
                   </div>
 
                   <div className="mt-6 grid grid-cols-3 gap-3 text-left">
                     <div className="rounded-[1rem] border border-white/10 bg-white/4 p-3">
-                      <p className="text-[0.58rem] uppercase tracking-[0.18em] text-white/55">Bot score</p>
-                      <p className="mt-2 text-2xl font-semibold text-white">94%</p>
+                      <p className="text-[0.58rem] uppercase tracking-[0.18em] text-white/55">Resolution rate</p>
+                      <p className="mt-2 text-2xl font-semibold text-white">92%</p>
                     </div>
                     <div className="rounded-[1rem] border border-white/10 bg-white/4 p-3">
-                      <p className="text-[0.58rem] uppercase tracking-[0.18em] text-white/55">Leads</p>
-                      <p className="mt-2 text-2xl font-semibold text-white">73</p>
+                      <p className="text-[0.58rem] uppercase tracking-[0.18em] text-white/55">Leads this week</p>
+                      <p className="mt-2 text-2xl font-semibold text-white">41</p>
                     </div>
                     <div className="rounded-[1rem] border border-white/10 bg-white/4 p-3">
-                      <p className="text-[0.58rem] uppercase tracking-[0.18em] text-white/55">Reply time</p>
-                      <p className="mt-2 text-2xl font-semibold text-white">2m</p>
+                      <p className="text-[0.58rem] uppercase tracking-[0.18em] text-white/55">Avg. reply time</p>
+                      <p className="mt-2 text-2xl font-semibold text-white">6s</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="absolute -left-4 bottom-7 rotate-[-7deg] rounded-full border border-[#1d1915]/10 bg-[#fffaf5] px-4 py-2 text-xs font-medium text-[#2d241f] shadow-[0_16px_30px_rgba(29,25,21,0.08)]">
-                  98% FAQ coverage
+                  96% FAQ coverage
                 </div>
 
                 <div className="absolute -right-4 top-7 rotate-[8deg] rounded-full border border-[#ef6d53]/30 bg-[#fff4f0] px-4 py-2 text-xs font-medium text-[#af4a33] shadow-[0_16px_30px_rgba(239,109,83,0.12)]">
