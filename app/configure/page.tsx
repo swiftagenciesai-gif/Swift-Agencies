@@ -35,8 +35,14 @@ export default function ConfigurePage() {
   const monthlyTotal = effectivePlan.custom ? null : effectivePlan.monthlyPrice + needs.length * 10
 
   useEffect(() => {
-    const plan = new URLSearchParams(window.location.search).get("plan")
+    const params = new URLSearchParams(window.location.search)
+    const plan = params.get("plan")
     if (PLANS.some((candidate) => candidate.id === plan)) setPlanId(plan as string)
+    const needsParam = params.get("needs")
+    if (needsParam) {
+      const matched = needsParam.split(",").filter((need) => NEEDS.includes(need))
+      if (matched.length > 0) setNeeds(matched)
+    }
   }, [])
 
   const toggleNeed = (need: string) => setNeeds((current) => current.includes(need) ? current.filter((item) => item !== need) : [...current, need])

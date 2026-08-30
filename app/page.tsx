@@ -69,13 +69,24 @@ const BOT_OPTIONS = {
   intelligence: ["Sophisticated AI", "AI-to-AI workflows", "Managed knowledge base"],
 } as const
 
+// Maps a builder selection to the matching checkbox on /configure's "needs"
+// list, so picking preferences here actually carries forward instead of
+// being a dead end ("configuration saved locally" with nothing to do next).
+const NEED_FOR_OPTION: Record<string, string> = {
+  "Lead Generation": "Lead generation",
+  "Customer Support": "Customer support",
+  "Appointment Booking": "Appointment booking",
+  "Sophisticated AI": "Sophisticated AI behavior",
+  "AI-to-AI workflows": "AI-to-AI workflows",
+}
+
 const ADD_ONS = [
   { id: "voice", name: "Voice Calling Integration", setup: 25, monthly: 10 },
   { id: "language", name: "Multi-Language Support", setup: 25, monthly: 10 },
   { id: "crm", name: "Advanced CRM Sync", setup: 25, monthly: 10 },
 ]
 
-const TALLY_URL = "/configure"
+const CONFIGURE_URL = "/configure"
 
 export default function HomePage() {
   const [botPreferences, setBotPreferences] = useState({
@@ -90,6 +101,11 @@ export default function HomePage() {
   const toggleAddOn = (id: string) => {
     setSelectedAddOns((current) => (current.includes(id) ? current.filter((item) => item !== id) : [...current, id]))
   }
+
+  const builderNeeds = [botPreferences.objective, botPreferences.intelligence]
+    .map((option) => NEED_FOR_OPTION[option])
+    .filter(Boolean)
+  const builderHref = `/configure?needs=${encodeURIComponent(builderNeeds.join(","))}`
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -250,9 +266,17 @@ export default function HomePage() {
                   </p>
                 </div>
 
-                <div className="mt-8 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[#4b3b35]">
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#6ad7a6] shadow-[0_0_18px_rgba(106,215,166,0.8)]" />
-                  configuration saved locally
+                <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[#4b3b35]">
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#6ad7a6] shadow-[0_0_18px_rgba(106,215,166,0.8)]" />
+                    configuration saved locally
+                  </div>
+                  <Button asChild size="sm" className="gap-2 rounded-full bg-[#1d1915] text-[#f8f4ef] hover:bg-[#2d251f]">
+                    <Link href={builderHref} className="inline-flex items-center gap-2">
+                      Build this bot
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -317,7 +341,11 @@ export default function HomePage() {
                 A system that earns its keep.
               </h2>
               <p className="mt-4 text-base text-[#5d4c42]">
-                Start with the flagship package and add exactly what your operation needs, not a bloated template.
+                Every build starts from our Starter package and grows with exactly what your operation needs — see the{" "}
+                <Link href="/pricing" className="underline decoration-[#ef6d53]/50 underline-offset-4 hover:text-[#1d1915]">
+                  full package comparison
+                </Link>{" "}
+                if you need more bots or advanced workflows.
               </p>
             </div>
 
@@ -340,7 +368,7 @@ export default function HomePage() {
 
               <div className="relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-[#ef6d53]/30 bg-[linear-gradient(135deg,_rgba(239,109,83,0.1),_rgba(255,255,255,0.4),_rgba(120,158,255,0.12))] p-6 shadow-[0_28px_70px_rgba(239,109,83,0.08)] sm:p-8">
                 <div>
-                  <Badge className="mb-5 rounded-full border-[#1d1915]/10 bg-white/80 text-[#2f2723]">Flagship package</Badge>
+                  <Badge className="mb-5 rounded-full border-[#1d1915]/10 bg-white/80 text-[#2f2723]">Starter package, your way</Badge>
                   <h3 className="display-font text-4xl leading-none text-[#1d1915]">The Swift Partnership</h3>
                   <p className="mt-3 max-w-lg text-sm leading-6 text-[#4b3b35]">
                     A high-touch AI growth system built around your goals, your voice, and the actual moments your customers need help.
@@ -358,12 +386,17 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <Button asChild size="lg" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#1d1915] px-6 text-[#f8f4ef] hover:bg-[#2d251f] sm:w-fit">
-                  <Link href={TALLY_URL} className="inline-flex items-center justify-center gap-2">
-                    <span>Start your onboarding</span>
-                    <ArrowRight className="h-4 w-4" />
+                <div className="flex flex-wrap items-center gap-4">
+                  <Button asChild size="lg" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1d1915] px-6 text-[#f8f4ef] hover:bg-[#2d251f]">
+                    <Link href={CONFIGURE_URL} className="inline-flex items-center justify-center gap-2">
+                      <span>Start your onboarding</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Link href="/pricing" className="text-sm font-medium text-[#af4a33] underline decoration-[#af4a33]/40 underline-offset-4 hover:text-[#1d1915]">
+                    Compare all packages
                   </Link>
-                </Button>
+                </div>
               </div>
             </div>
           </div>
