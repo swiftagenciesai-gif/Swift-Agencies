@@ -161,7 +161,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="relative flex justify-center lg:justify-end">
+            <div className="relative flex flex-col items-center lg:items-end">
               <div className="soft-shell relative w-full max-w-[560px] rounded-[2.2rem] border border-[#1d1915]/10 bg-[#f7f1ea]/80 p-3 sm:p-4">
                 <div className="editorial-grid absolute inset-0 rounded-[2.2rem] opacity-60" />
 
@@ -202,14 +202,10 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="absolute -left-4 bottom-7 rotate-[-7deg] rounded-full border border-[#1d1915]/10 bg-[#fffaf5] px-4 py-2 text-xs font-medium text-[#2d241f] shadow-[0_16px_30px_rgba(29,25,21,0.08)]">
-                  96% FAQ coverage
-                </div>
-
-                <div className="absolute -right-4 top-7 rotate-[8deg] rounded-full border border-[#ef6d53]/30 bg-[#fff4f0] px-4 py-2 text-xs font-medium text-[#af4a33] shadow-[0_16px_30px_rgba(239,109,83,0.12)]">
-                  customized for your workflow
-                </div>
               </div>
+              <p className="mt-4 max-w-[420px] text-xs text-[#8b7d70]">
+                Sample conversation flow from a home-services client's Growth-tier build — full transcript reviewed with their team before launch.
+              </p>
             </div>
           </div>
         </section>
@@ -287,7 +283,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
             <div className="max-w-2xl">
               <h2 className="display-font text-5xl leading-none text-[#1d1915] sm:text-6xl">
-                A simple process with a thoughtful finish.
+                Three steps. A few business days. One bot that sounds like you.
               </h2>
               <p className="mt-4 text-base text-[#5d4c42]">
                 You describe your business. We handle the build. Your customers get a more human, helpful first response.
@@ -317,7 +313,7 @@ export default function HomePage() {
               Everything your business needs from a chatbot.
             </h2>
             <p className="mt-4 text-base text-[#5d4c42]">
-              Not a generic widget — a custom assistant trained on your business and connected to your real tools.
+              Trained on your services, hours, and policies — connected to the calendar, CRM, and knowledge base you already use.
             </p>
           </div>
 
@@ -404,7 +400,7 @@ export default function HomePage() {
 
         <section id="faq" className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:py-24">
           <h2 className="display-font text-center text-5xl leading-none text-[#1d1915] sm:text-6xl">
-            A few clarifying answers.
+            Questions we hear most.
           </h2>
           <Accordion type="single" collapsible className="mt-10">
             {FAQS.map((item, index) => (

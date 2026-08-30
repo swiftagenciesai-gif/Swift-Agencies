@@ -14,7 +14,7 @@ export default function PricingPage() {
 
       <div className="max-w-2xl mt-10">
         <Badge variant="outline" className="mb-4">Investment</Badge>
-        <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">Choose the intelligence your business needs.</h1>
+        <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">Pick the package that matches how customers reach you.</h1>
         <p className="mt-5 text-lg text-muted-foreground">Every package is built for website chatbots, with setup, training, deployment, and ongoing support included at the right level.</p>
       </div>
       <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">

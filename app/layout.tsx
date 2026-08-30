@@ -20,7 +20,6 @@ export const metadata: Metadata = {
   title: "Swift Agencies — Custom AI Chatbots for Businesses",
   description:
     "Swift Agencies designs custom AI chatbot systems that answer questions, capture leads, and reduce service bottlenecks 24/7.",
-  generator: "v0.app",
   metadataBase: new URL("https://swiftagencies.ai"),
   openGraph: {
     title: "Swift Agencies — Custom AI Chatbots for Businesses",
