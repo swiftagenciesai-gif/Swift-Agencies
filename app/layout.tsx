@@ -60,7 +60,7 @@ export default function RootLayout({
         {children}
         <Script
           src="https://chatbot-factory-mocha.vercel.app/widget.js"
-          data-widget-id="41f4d923-7450-4b4d-acae-b2836eeaf59f"
+          data-widget-id="ad79af17-756c-411c-a324-63dbfcec6158"
           strategy="afterInteractive"
           async
         />
