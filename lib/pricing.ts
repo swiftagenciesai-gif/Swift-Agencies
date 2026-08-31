@@ -18,7 +18,7 @@ export const PLANS: Plan[] = [
     id: "starter",
     name: "Starter",
     price: 1500,
-    monthlyPrice: 350,
+    monthlyPrice: 329,
     botCount: "1 website chatbot",
     tagline: "A focused website chatbot with the essentials handled for you.",
     features: [
@@ -36,8 +36,8 @@ export const PLANS: Plan[] = [
   {
     id: "growth",
     name: "Growth",
-    price: 3000,
-    monthlyPrice: 750,
+    price: 2900,
+    monthlyPrice: 699,
     botCount: "Up to 2 website chatbots",
     popular: true,
     tagline: "Smarter AI behavior, better management, and workflows for growing teams.",
@@ -58,8 +58,8 @@ export const PLANS: Plan[] = [
   {
     id: "pro",
     name: "Pro",
-    price: 6000,
-    monthlyPrice: 1150,
+    price: 5900,
+    monthlyPrice: 999,
     botCount: "Up to 5 website chatbots",
     tagline: "Advanced AI systems, multiple bots, and hands-on management at scale.",
     features: [

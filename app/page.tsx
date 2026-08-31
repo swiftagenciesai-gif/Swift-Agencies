@@ -26,6 +26,9 @@ import {
   ArrowUpRight,
   Bot,
 } from "lucide-react"
+import { PLANS } from "@/lib/pricing"
+
+const STARTER_PLAN = PLANS.find((plan) => plan.id === "starter")!
 
 const STEPS = [
   {
@@ -95,8 +98,8 @@ export default function HomePage() {
     intelligence: "Sophisticated AI",
   })
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([])
-  const setupTotal = 1500 + selectedAddOns.reduce((total, id) => total + (ADD_ONS.find((addon) => addon.id === id)?.setup ?? 0), 0)
-  const monthlyTotal = 350 + selectedAddOns.reduce((total, id) => total + (ADD_ONS.find((addon) => addon.id === id)?.monthly ?? 0), 0)
+  const setupTotal = STARTER_PLAN.price + selectedAddOns.reduce((total, id) => total + (ADD_ONS.find((addon) => addon.id === id)?.setup ?? 0), 0)
+  const monthlyTotal = STARTER_PLAN.monthlyPrice + selectedAddOns.reduce((total, id) => total + (ADD_ONS.find((addon) => addon.id === id)?.monthly ?? 0), 0)
 
   const toggleAddOn = (id: string) => {
     setSelectedAddOns((current) => (current.includes(id) ? current.filter((item) => item !== id) : [...current, id]))
